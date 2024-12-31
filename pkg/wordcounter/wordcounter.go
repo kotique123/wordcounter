@@ -6,34 +6,42 @@ func ToLowerCase(phrase string) string {
 	return strings.ToLower(phrase)
 }
 
-func RemoveQuotes(phrase string) []rune {
+func RemoveQuotes(phrase string) string {
 	runes := []rune(phrase)
 	switch runes[0] {
 	case 39:
 		runes[0] = 32
 		runes[len(runes)-1] = 32
 	}
-	return runes
+	return string(runes)
 }
 
-func CleanupString(phrase []rune) string {
-	clean_string := strings.Trim(string(phrase), "!&@$%^#()\"+-`~.")
-	return clean_string
-}
-
-func RemoveApostrophy(phrase []rune) []rune {
-	if len(phrase) < 1 {
-		return phrase
-	} else {
-		for i := 0; i < len(phrase)-1; i++ {
-			if phrase[i] == 39 && phrase[i-1] == 32 {
-				phrase[i] = 32
-			} else if phrase[i] == 39 && phrase[i+1] == 32 {
-				phrase[i] = 32
+func CleanupString(phrase string) string {
+	runes := []rune(phrase)
+	for i := 0; i < len(phrase); i++ {
+		if runes[i] < 97 || runes[i] > 122 && runes[i] != 39 {
+			if runes[i]-48 < 0 || runes[i]-48 > 9 {
+				runes[i] = 32
 			}
 		}
 	}
-	return phrase
+	return string(runes)
+}
+
+func RemoveApostrophy(phrase string) string {
+	if len(phrase) < 1 {
+		return phrase
+	} else {
+		runes := []rune(phrase)
+		for i := 0; i < len(phrase)-1; i++ {
+			if runes[i] == 39 && phrase[i-1] == 32 {
+				runes[i] = 32
+			} else if phrase[i] == 39 && phrase[i+1] == 32 {
+				runes[i] = 32
+			}
+		}
+		return string(runes)
+	}
 }
 
 // make sure that the numbers are kept
