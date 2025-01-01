@@ -38,7 +38,8 @@ func RemoveApostrophy(phrase string) string {
 		for i := 0; i < len(phrase)-1; i++ {
 			if runes[i] == 39 && phrase[i-1] == 32 {
 				runes[i] = 32
-			} else if phrase[i] == 39 && phrase[i+1] == 32 {
+			}
+			if phrase[i] == 39 && phrase[i+1] == 32 {
 				runes[i] = 32
 			}
 		}
