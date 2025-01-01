@@ -2,8 +2,6 @@ package wordcounter
 
 import "strings"
 
-type Frequency map[string]int
-
 func ToLowerCase(phrase string) string {
 	return strings.ToLower(phrase)
 }
@@ -35,20 +33,23 @@ func RemoveApostrophy(phrase string) string {
 		return phrase
 	} else {
 		runes := []rune(phrase)
-		for i := 0; i < len(phrase)-1; i++ {
-			if runes[i] == 39 && phrase[i-1] == 32 {
+		for i := 0; i < len(runes)-1; i++ {
+			if runes[i] == 39 && runes[i-1] == 32 {
 				runes[i] = 32
-			} else if phrase[i] == 39 && phrase[i+1] == 32 {
+			} else if runes[i] == 39 && runes[i+1] == 32 {
 				runes[i] = 32
 			}
+		}
+		if runes[len(runes)-1] == 39 {
+			runes[len(runes)-1] = 32
 		}
 		return string(runes)
 	}
 }
 
-func CountWords(phrase string) Frequency {
+func CountWords(phrase string) map[string]int {
 	words := strings.Fields(phrase)
-	frequency := make(Frequency)
+	frequency := make(map[string]int)
 	for _, word := range words {
 		frequency[word] = 0
 	}
@@ -58,7 +59,7 @@ func CountWords(phrase string) Frequency {
 	return frequency
 }
 
-func FromStringToFrequency(phrase string) Frequency {
+func FromStringToFrequency(phrase string) map[string]int {
 	phrase = ToLowerCase(phrase)
 	phrase = RemoveQuotes(phrase)
 	phrase = CleanupString(phrase)
