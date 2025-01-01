@@ -1,3 +1,5 @@
+// Copied from https://github.com/exercism/go/blob/main/exercises/practice/word-count/cases_test.go
+// and edited by Daniil Murashov DaniilMurashov@icloud.com
 package wordcounter
 
 var testCases = []struct {

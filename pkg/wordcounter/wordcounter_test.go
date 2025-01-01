@@ -1,3 +1,5 @@
+// Copied from https://github.com/exercism/go/blob/main/exercises/practice/word-count/word_count_test.go
+// and edited by Daniil Murashov DaniilMurashov@icloud.com
 package wordcounter
 
 import (
