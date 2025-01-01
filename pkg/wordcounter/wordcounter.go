@@ -57,3 +57,12 @@ func CountWords(phrase string) Frequency {
 	}
 	return frequency
 }
+
+func FromStringToFrequency(phrase string) Frequency {
+	phrase = ToLowerCase(phrase)
+	phrase = RemoveQuotes(phrase)
+	phrase = CleanupString(phrase)
+	phrase = RemoveApostrophy(phrase)
+	frequency := CountWords(phrase)
+	return frequency
+}

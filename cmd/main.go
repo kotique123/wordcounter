@@ -12,11 +12,6 @@ func main() {
 
 	// Invoke formatting sequence
 	phrase := initial_phrase
-	phrase = wordcounter.ToLowerCase(phrase)
-	phrase = wordcounter.RemoveQuotes(phrase)
-	phrase = wordcounter.CleanupString(phrase)
-	phrase = wordcounter.RemoveApostrophy(phrase)
-	fmt.Println(phrase)
-	frequency := wordcounter.CountWords(phrase)
+	frequency := wordcounter.FromStringToFrequency(phrase)
 	fmt.Print(frequency)
 }
