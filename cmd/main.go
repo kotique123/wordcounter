@@ -17,6 +17,6 @@ func main() {
 	phrase = wordcounter.CleanupString(phrase)
 	phrase = wordcounter.RemoveApostrophy(phrase)
 	fmt.Println(phrase)
-	frequency := wordcounter.PopulateFrequency(phrase)
+	frequency := wordcounter.CountWords(phrase)
 	fmt.Print(frequency)
 }

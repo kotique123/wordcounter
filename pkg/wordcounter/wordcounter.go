@@ -46,11 +46,14 @@ func RemoveApostrophy(phrase string) string {
 	}
 }
 
-func PopulateFrequency(phrase string) Frequency {
+func CountWords(phrase string) Frequency {
 	words := strings.Fields(phrase)
 	frequency := make(Frequency)
 	for _, word := range words {
-		frequency[word] = 1
+		frequency[word] = 0
+	}
+	for _, word := range words {
+		frequency[word]++
 	}
 	return frequency
 }
